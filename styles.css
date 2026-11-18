@@ -67,3 +67,41 @@ footer{border-top:1px solid var(--line);padding:18px 0 23px;display:flex;justify
 .photo-flight{background-position:50% 50%!important}
 .photo-closet{background-position:75% 50%!important}
 .photo-pulse{background-position:100% 50%!important}
+
+/* Minimal homepage: only the heading and scattered Polaroids */
+.topbar,.intro,.collage-label,.scroll-cue,.about,footer{display:none!important}
+.page{width:min(1120px,100%);padding:0 7%;margin:0 auto}
+body{min-height:100vh}
+.page>h1{text-align:center;font-size:clamp(42px,6vw,76px);line-height:1.08;letter-spacing:-.055em;font-weight:500;margin:58px 0 8px}
+.page>h1 em{font:italic 500 1em var(--serif);color:var(--blue)}
+.polaroid-field{height:620px;position:relative;margin-top:0;border:0}
+.photo{background-image:url('/assets/project-strip.jpg')!important;background-repeat:no-repeat!important;background-size:500% 100%!important;background-color:#293744!important;height:150px!important;padding:0!important}
+.photo-film{background-position:0% 50%!important}
+.photo-bottle{background-position:25% 50%!important}
+.photo-flight{background-position:50% 50%!important}
+.photo-closet{background-position:75% 50%!important}
+.photo-pulse{background-position:100% 50%!important}
+.photo:before,.photo:after,.photo .film-frame,.photo .sun,.photo .bottle-shape,.photo .flight-orbit,.photo .dress-shape,.photo .pulse-rings{display:none!important}
+.photo b,.photo small{display:none!important}
+.p-film{left:5%;top:25px}
+.p-bottle{left:29%;top:150px}
+.p-flight{left:63%;top:20px}
+.p-closet{left:13%;top:340px}
+.p-pulse{left:73%;top:330px}
+.polaroid{width:190px;padding:10px 10px 0;background:#f2efe6;box-shadow:0 10px 26px rgba(0,0,0,.28)}
+.caption{min-height:70px;padding:11px 4px 14px;font:12px/1.38 var(--serif);color:#263541}
+.polaroid:before{content:"";position:absolute;z-index:2;top:-8px;left:calc(50% - 25px);width:50px;height:16px;background:rgba(223,216,196,.65);transform:rotate(-4deg);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.p-bottle:before,.p-closet:before{transform:rotate(5deg)}
+@media(max-width:700px){
+ .page{padding:0 5%}
+ .page>h1{font-size:clamp(36px,8vw,56px);margin:42px 0 18px}
+ .polaroid-field{height:690px}
+ .polaroid{width:150px;padding:8px 8px 0}
+ .photo{height:115px!important}
+ .caption{font-size:10px;min-height:60px}
+ .p-film{left:1%;top:20px}.p-bottle{left:53%;top:95px}.p-flight{left:4%;top:275px}.p-closet{left:54%;top:355px}.p-pulse{left:29%;top:535px}
+}
+@media(max-width:390px){
+ .polaroid{width:132px}.photo{height:100px!important}.caption{font-size:9px}
+ .polaroid-field{height:650px}.p-flight{top:250px}.p-closet{top:330px}.p-pulse{top:505px}
+}
