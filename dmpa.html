@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#071321">
+<title>Indian Film Success | Amani Singh</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
+:root{--bg:#071321;--panel:rgba(9,24,40,.82);--line:rgba(164,193,212,.2);--text:#f0eee8;--muted:#a6b5c2;--blue:#a4c1d4;--cyan:#38bdf8;--gold:#d8b77a;--sans:'DM Sans',Arial,sans-serif;--mono:'DM Mono',monospace;--serif:'Playfair Display',Georgia,serif}
+*{box-sizing:border-box}body{margin:0;color:var(--text);font-family:var(--sans);background:#071321 url("assets/wallpaper.jpg") center/cover fixed no-repeat;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;background:rgba(4,12,22,.65);pointer-events:none;z-index:-1}
+a{color:inherit}.wrap{max-width:1320px;margin:auto;padding:24px clamp(18px,4vw,56px) 64px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:8px 0 20px;border-bottom:1px solid var(--line);font:10px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
+.back{text-decoration:none;border-bottom:1px solid var(--blue);padding-bottom:4px}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:42px;align-items:center;padding:48px 0 38px}
+.kicker{font:10px var(--mono);letter-spacing:.16em;color:var(--blue);text-transform:uppercase}
+h1{font-size:clamp(38px,5vw,66px);line-height:1.02;letter-spacing:-.055em;font-weight:500;margin:18px 0}
+h1 em{font:italic 500 1em var(--serif);color:var(--blue)}
+.subtitle{max-width:660px;color:#d1dce4;font-size:16px;line-height:1.65}
+.hero-img{width:100%;max-height:300px;object-fit:cover;border:1px solid var(--line);box-shadow:0 18px 55px #0008;border-radius:3px}
+.meta{display:flex;gap:20px;flex-wrap:wrap;margin-top:22px;color:var(--muted);font:9px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.section-title{display:flex;justify-content:space-between;align-items:end;margin:28px 0 14px;border-bottom:1px solid var(--line);padding-bottom:10px}
+.section-title h2{font:20px var(--serif);margin:0}.section-title span{font:9px var(--mono);color:var(--blue);letter-spacing:.12em;text-transform:uppercase}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px;backdrop-filter:blur(10px);box-shadow:0 10px 28px #0002}
+.kpi-label{font:9px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.kpi-value{font-size:clamp(27px,3vw,38px);font-weight:600;letter-spacing:-.04em;margin:10px 0 3px}
+.kpi-note{font-size:11px;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.chart-card h3,.card h3{font-size:14px;font-weight:600;margin:0 0 8px}.small{font-size:11px;color:var(--muted);line-height:1.55}
+.factor-list{display:grid;gap:15px;margin-top:20px}
+.factor{display:grid;grid-template-columns:150px 1fr 64px;gap:12px;align-items:center;font-size:11px}
+.track{height:8px;background:#1c3042;border-radius:20px;overflow:hidden}.bar{height:100%;border-radius:20px;background:linear-gradient(90deg,#2c82b7,#79c9e8)}
+.factor .pval{font:9px var(--mono);color:var(--blue);text-align:right}
+.dist{display:flex;gap:24px;align-items:center;justify-content:center;min-height:210px}
+.donut{width:150px;height:150px;border-radius:50%;background:conic-gradient(#d18c64 0 67%,#5ba8c9 67% 100%);display:grid;place-items:center;position:relative;flex:none}
+.donut:after{content:"";position:absolute;width:94px;height:94px;border-radius:50%;background:#0b1b2a;border:1px solid var(--line)}
+.donut b{z-index:1;font-size:24px}.legend{display:grid;gap:12px;font-size:12px}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:8px}.legend small{display:block;color:var(--muted);margin:3px 0 0 18px}
+.method{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+.step{border-top:2px solid #4388ad;padding:14px 12px;background:rgba(8,22,36,.72);border-radius:0 0 6px 6px}
+.step b{font:9px var(--mono);color:var(--blue);letter-spacing:.08em}.step p{font-size:12px;line-height:1.5;margin:8px 0 0}
+.insight{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;margin-top:14px}
+.highlight{font:clamp(20px,2.5vw,29px)/1.25 var(--serif);color:var(--text);margin:10px 0 12px}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}.tag{font:9px var(--mono);padding:7px 9px;border:1px solid var(--line);border-radius:20px;color:var(--blue)}
+.note{border-left:2px solid var(--gold);padding:12px 14px;background:rgba(216,183,122,.08);font-size:11px;line-height:1.6;color:#e4ded0;margin-top:14px}
+.footer{margin-top:28px;padding-top:15px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--muted);font:9px var(--mono);letter-spacing:.08em}
+@media(max-width:850px){.hero{grid-template-columns:1fr;gap:20px;padding-top:34px}.hero-img{max-height:240px}.kpis{grid-template-columns:repeat(2,1fr)}.grid2,.insight{grid-template-columns:1fr}}
+@media(max-width:560px){.method{grid-template-columns:repeat(2,1fr)}.factor{grid-template-columns:112px 1fr 56px}.dist{gap:15px}.donut{width:120px;height:120px}.donut:after{width:75px;height:75px}}
+</style></head>
+<body><main class="wrap">
+<header class="top"><span>AS / Portfolio · 2026</span><a class="back" href="index.html">← Back to projects</a></header>
+<section class="hero">
+ <div><div class="kicker">Data Management &amp; Predictive Analytics · DMPA</div>
+ <h1>What makes a film <em>work?</em></h1>
+ <p class="subtitle">Identifying the pre-release factors statistically associated with an Indian film avoiding a flop verdict — using only information available before the film reaches theatres.</p>
+ <div class="meta"><span>JMP Pro · Nominal logistic regression</span><span>Indian wide releases · 2016–2025</span><span>With Pankhuri Aggarwal</span></div></div>
+ <img class="hero-img" src="data:image/jpeg;base64,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" alt="Indian cinema, film camera and Indian flag">
+</section>
+<div class="section-title"><h2>At a glance</h2><span>Model overview</span></div>
+<section class="kpis">
+ <div class="card"><div class="kpi-label">Final dataset</div><div class="kpi-value">560</div><div class="kpi-note">Indian wide releases</div></div>
+ <div class="card"><div class="kpi-label">Training sample</div><div class="kpi-value">448</div><div class="kpi-note">Stratified training partition</div></div>
+ <div class="card"><div class="kpi-label">Significant factors</div><div class="kpi-value">5 / 8</div><div class="kpi-note">Effects in primary model</div></div>
+ <div class="card"><div class="kpi-label">Whole-model test</div><div class="kpi-value">&lt;0.0001</div><div class="kpi-note">Highly significant vs. intercept-only</div></div>
+</section>
+<section class="grid2">
+ <div class="card chart-card"><h3>What the model found</h3><p class="small">Statistically significant terms in the primary nominal logistic regression. Bars show Wald chi-square statistics from the report — not effect sizes.</p>
+ <div class="factor-list">
+  <div class="factor"><span>Top actor</span><div class="track"><div class="bar" style="width:100%"></div></div><span class="pval">29.15</span></div>
+  <div class="factor"><span>Social relevance</span><div class="track"><div class="bar" style="width:49.2%"></div></div><span class="pval">14.35</span></div>
+  <div class="factor"><span>Director rating</span><div class="track"><div class="bar" style="width:34.6%"></div></div><span class="pval">10.09</span></div>
+  <div class="factor"><span>Top actress</span><div class="track"><div class="bar" style="width:16.1%"></div></div><span class="pval">4.68</span></div>
+  <div class="factor"><span>VFX-heavy</span><div class="track"><div class="bar" style="width:14.6%"></div></div><span class="pval">4.25</span></div>
+ </div><p class="small" style="margin-top:16px">Wald χ² values; higher values indicate stronger statistical evidence against a zero coefficient in this fitted model.</p>
+ </div>
+ <div class="card chart-card"><h3>Outcome mix after cleaning</h3><p class="small">The cleaned dataset was brought to an approximately 67/33 Flop / Not-Flop split.</p>
+ <div class="dist"><div class="donut"><b>560</b></div><div class="legend">
+  <div><span class="dot" style="background:#d18c64"></span><b>67%</b> Flop<small>Trade verdict: Flop / Disaster / Below Average</small></div>
+  <div><span class="dot" style="background:#5ba8c9"></span><b>33%</b> Not-Flop<small>Trade verdict: Average and above</small></div>
+ </div></div><p class="small">The raw scrape initially showed an 86% flop rate before cleaning and scope restrictions.</p>
+ </div>
+</section>
+<div class="section-title"><h2>How the analysis was built</h2><span>Research workflow</span></div>
+<section class="method">
+ <div class="step"><b>01 / FRAME</b><p>Started with roughly 50 candidate variables and applied a strict pre-release information rule.</p></div>
+ <div class="step"><b>02 / OPERATIONALISE</b><p>Narrowed to measurable variables, using explicit coding rules for star power, director form, social relevance and VFX dependence.</p></div>
+ <div class="step"><b>03 / PREPARE</b><p>Cleaned the wide-release dataset, treated missingness carefully and created a stratified train / validation / test split.</p></div>
+ <div class="step"><b>04 / MODEL</b><p>Fitted and iteratively trimmed a nominal logistic regression in JMP Pro; compared model specifications.</p></div>
+</section>
+<section class="insight">
+ <div class="card"><div class="kicker">Key finding</div><div class="highlight">Films succeed on people — but the model explains only part of the story.</div>
+ <p class="small">Top-actor status had the strongest statistical signal, followed by social relevance and the director's recent track record. Top-actress status and VFX-heavy positioning were also significant in the primary model.</p>
+ <div class="tags"><span class="tag">Top actor · p &lt; 0.0001</span><span class="tag">Social relevance · p = 0.0002</span><span class="tag">Director rating · p = 0.0015</span><span class="tag">Top actress · p = 0.0305</span><span class="tag">VFX-heavy · p = 0.0392</span></div>
+ </div>
+ <div class="card"><h3>Model fit, interpreted honestly</h3><div class="kpi-value">0.1816</div><div class="kpi-label">RSquare (U) · approximately 18%</div><p class="small" style="margin-top:12px">The model is statistically significant, but most variation in flop / not-flop outcomes remains unexplained by the measured pre-release variables.</p>
+ <div class="note">This is an association-based model, not proof of causation and not a guaranteed hit predictor. Word of mouth, competition, timing and luck remain outside the pre-release inputs.</div></div>
+</section>
+<div class="section-title"><h2>What did not hold up?</h2><span>Null findings matter</span></div>
+<section class="card"><p class="small">In the primary model, remake / adaptation status, censor certification and music-director fame were not individually significant after controlling for the other terms. The report also notes that trailer-view and buzz proxies were dropped because of substantial missingness or weak operational reliability.</p></section>
+<div class="section-title"><h2>Scope &amp; limitations</h2><span>Read with context</span></div>
+<section class="card"><ul class="small" style="padding-left:18px;line-height:1.8;margin:0">
+ <li>Trade verdicts are used as the proxy for commercial success.</li>
+ <li>Only wide theatrical releases are included; limited and niche releases are outside scope.</li>
+ <li>Star and music rankings are year-specific and involve judgement at the margin.</li>
+ <li>Findings are associations, not causal effects, and apply to the Indian wide-release market in the study period.</li>
+ <li>The primary model's pseudo-R² is modest; box-office outcomes remain noisy.</li>
+</ul></section>
+<footer class="footer"><span>DATA MANAGEMENT &amp; PREDICTIVE ANALYTICS</span><span>JMP PRO · NOMINAL LOGISTIC REGRESSION</span></footer>
+</main></body></html>

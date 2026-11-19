@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#071321">
+<title>Flight Delay Propagation | Amani Singh</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
+:root{--bg:#071321;--panel:rgba(9,24,40,.86);--line:rgba(164,193,212,.2);--text:#f0eee8;--muted:#a6b5c2;--blue:#a4c1d4;--cyan:#2bb9e8;--red:#ef897e;--gold:#d8b77a;--sans:'DM Sans',Arial,sans-serif;--mono:'DM Mono',monospace;--serif:'Playfair Display',Georgia,serif}
+*{box-sizing:border-box}body{margin:0;color:var(--text);font-family:var(--sans);background:#071321 url("assets/wallpaper.jpg") center/cover fixed no-repeat;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;background:rgba(4,12,22,.72);pointer-events:none;z-index:-1}
+.wrap{max-width:1320px;margin:auto;padding:24px clamp(18px,4vw,56px) 64px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:8px 0 20px;border-bottom:1px solid var(--line);font:10px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
+.back{text-decoration:none;color:var(--blue);border-bottom:1px solid var(--blue);padding-bottom:4px}
+.hero{padding:42px 0 28px}.kicker{font:10px var(--mono);letter-spacing:.16em;color:var(--blue);text-transform:uppercase}
+h1{font-size:clamp(38px,5vw,64px);line-height:1.04;letter-spacing:-.05em;font-weight:500;margin:15px 0}
+h1 em{font:italic 500 1em var(--serif);color:var(--blue)}
+.subtitle{max-width:930px;color:#d1dce4;font-size:16px;line-height:1.65;margin:0}
+.meta{display:flex;gap:20px;flex-wrap:wrap;margin-top:20px;color:var(--muted);font:9px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.section-title{display:flex;justify-content:space-between;align-items:end;margin:28px 0 14px;border-bottom:1px solid var(--line);padding-bottom:10px}
+.section-title h2{font:20px var(--serif);margin:0}.section-title span{font:9px var(--mono);color:var(--blue);letter-spacing:.12em;text-transform:uppercase}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px;backdrop-filter:blur(10px);box-shadow:0 10px 28px #0002}
+.kpi-label{font:9px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.kpi-value{font-size:clamp(27px,3vw,38px);font-weight:600;letter-spacing:-.04em;margin:10px 0 3px}
+.kpi-note,.small{font-size:11px;color:var(--muted);line-height:1.6}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.card h3{font-size:14px;font-weight:600;margin:0 0 8px}
+.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:18px 0}
+.node{padding:12px 14px;border:1px solid var(--line);border-radius:6px;background:rgba(7,19,33,.75);font-size:11px;text-align:center;flex:1;min-width:120px}
+.arrow{color:var(--cyan);font-size:20px}
+.loop{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+.loopbox{padding:12px;border-radius:6px;background:rgba(7,19,33,.65);border:1px solid var(--line)}
+.loopbox b{font:12px var(--mono);color:var(--cyan)}.loopbox p{font-size:10px;line-height:1.5;color:var(--muted);margin:7px 0 0}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px}
+.metric{background:rgba(7,19,33,.7);border:1px solid var(--line);border-radius:6px;padding:13px}
+.metric b{font-size:23px;display:block;margin:4px 0}.metric span{font:9px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
+.sens{display:grid;gap:13px;margin-top:15px}
+.sensrow{display:grid;grid-template-columns:155px 1fr;gap:12px;align-items:start}
+.sensrow b{font-size:11px}.sensrow p{margin:0;font-size:11px;color:var(--muted);line-height:1.55}
+.highlight{font:clamp(20px,2.5vw,29px)/1.25 var(--serif);margin:8px 0 12px}
+.note{border-left:2px solid var(--gold);padding:12px 14px;background:rgba(216,183,122,.08);font-size:11px;line-height:1.6;color:#e4ded0;margin-top:14px}
+.table{width:100%;border-collapse:collapse;font-size:11px;margin-top:12px}
+.table th,.table td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line)}
+.table th{font:9px var(--mono);letter-spacing:.08em;color:var(--blue);text-transform:uppercase}
+.pill{display:inline-block;padding:5px 8px;border:1px solid var(--line);border-radius:20px;color:var(--blue);font:9px var(--mono);margin:4px 4px 0 0}
+.footer{margin-top:28px;padding-top:15px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--muted);font:9px var(--mono);letter-spacing:.08em}
+@media(max-width:850px){.kpis{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}.loop{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.sensrow{grid-template-columns:1fr}.metrics{grid-template-columns:1fr}.loop{grid-template-columns:1fr 1fr}}
+</style></head>
+<body><main class="wrap">
+<header class="top"><span>AS / Portfolio · 2026</span><a class="back" href="index.html">← Back to projects</a></header>
+<section class="hero">
+ <div class="kicker">Analytical System Design · System Dynamics</div>
+ <h1>How do operational constraints influence <em>flight delay propagation?</em></h1>
+ <p class="subtitle">A calibrated system dynamics model examining how operational primary delays become reactionary delays, how recovery capacity constrains the system, and what different intervention choices cost.</p>
+ <div class="meta"><span>Vensim stock-and-flow model</span><span>Causal loop analysis</span><span>Calibration + sensitivity testing</span><span>Cost-informed recommendations</span></div>
+</section>
+<div class="section-title"><h2>System performance at a glance</h2><span>Calibrated base case</span></div>
+<section class="kpis">
+ <div class="card"><div class="kpi-label">Average delay / flight</div><div class="kpi-value">17.50 <small>min</small></div><div class="kpi-note">Calibrated to EUROCONTROL CODA 2023/24</div></div>
+ <div class="card"><div class="kpi-label">Reactionary share</div><div class="kpi-value">46.0%</div><div class="kpi-note">Share of delay minutes · CODA target</div></div>
+ <div class="card"><div class="kpi-label">Delay multiplier</div><div class="kpi-value">1.85×</div><div class="kpi-note">Propagation target · Beatty et al.</div></div>
+ <div class="card"><div class="kpi-label">On-time performance</div><div class="kpi-value">57.6%</div><div class="kpi-note">Follows from the calibrated model; not separately tuned</div></div>
+</section>
+<div class="section-title"><h2>Problem framing</h2><span>What enters the model</span></div>
+<section class="grid2">
+ <div class="card"><h3>Two delay types are modelled</h3>
+  <div class="flow"><div class="node">Operational primary delay<br><span class="small">Ground staff · crew · technical</span></div><span class="arrow">→</span><div class="node">Reactionary delay<br><span class="small">Inherited from previous flights</span></div></div>
+  <p class="small">Weather, security, ATC, passenger and other factors are represented as a single lumped exogenous constant. Operational delay is partly endogenous; reactionary delay is endogenous through propagation.</p>
+  <div class="note">The model narrows the problem to controllable operational primary delay and the way it multiplies through the schedule. It does not attempt to model every cause of flight delay.</div>
+ </div>
+ <div class="card"><h3>Data sources and their role</h3>
+  <table class="table"><tbody>
+   <tr><td>EUROCONTROL CODA Digest 2023 &amp; 2024</td><td>17.5 min average delay; 46% reactionary share</td></tr>
+   <tr><td>DGCA India Monthly Traffic Report</td><td>Operational share of primary delay: 0.50</td></tr>
+   <tr><td>Cook &amp; Tanner / EUROCONTROL v4.1</td><td>Delay and cancellation cost references</td></tr>
+   <tr><td>Beatty et al. (1998)</td><td>Propagation multiplier cross-check</td></tr>
+  </tbody></table>
+ </div>
+</section>
+<div class="section-title"><h2>Model structure</h2><span>Stocks · policy levers · feedback</span></div>
+<section class="grid2">
+ <div class="card"><h3>Core stocks</h3>
+  <div class="metrics">
+   <div class="metric"><span>Stock 01</span><b>Delay</b><p class="small">Average Delay per Flight · minutes</p></div>
+   <div class="metric"><span>Stock 02</span><b>Passengers</b><p class="small">Misconnected Passengers · passengers</p></div>
+   <div class="metric"><span>Stock 03</span><b>Reliability</b><p class="small">Perceived Reliability · index 0–1</p></div>
+  </div>
+  <p class="small" style="margin-top:14px">Average Delay per Flight rises through Delay Generation and falls through Delay Resolution. Misconnected Passengers are drained by Rebooking Rate.</p>
+ </div>
+ <div class="card"><h3>Policy levers</h3>
+  <table class="table"><thead><tr><th>Lever</th><th>Base setting</th><th>Role</th></tr></thead><tbody>
+   <tr><td>Ground Staff Adequacy</td><td>1.0</td><td>Resourcing vs. requirement</td></tr>
+   <tr><td>Turnaround Slack</td><td>12.87 min</td><td>Absorbable slack per rotation</td></tr>
+   <tr><td>Connection Buffer</td><td>30 min</td><td>Protects passenger connections</td></tr>
+  </tbody></table>
+  <p class="small">The model also uses derived and calibrated structural parameters, including operational delay rate, propagation strength, propagation shape and recovery fraction.</p>
+ </div>
+</section>
+<div class="card" style="margin-top:14px">
+ <h3>Feedback loops</h3>
+ <div class="loop">
+  <div class="loopbox"><b>R1 · Reinforcing</b><p>Buffer utilisation increases propagation, which creates more reactionary delay.</p></div>
+  <div class="loopbox"><b>B1 · Balancing</b><p>Recovery capacity clears accumulated delay.</p></div>
+  <div class="loopbox"><b>B2 · Balancing</b><p>Cancellations relieve extreme delay above a threshold.</p></div>
+  <div class="loopbox"><b>B4 · Balancing</b><p>Rebooking drains the misconnected-passenger stock.</p></div>
+ </div>
+ <p class="small" style="margin-top:12px">Passenger satisfaction chain: Delay → On-Time Performance → Perceived Reliability.</p>
+</div>
+<div class="section-title"><h2>Calibration &amp; validation</h2><span>Model checks</span></div>
+<section class="grid2">
+ <div class="card"><h3>Calibration targets reproduced</h3>
+  <table class="table"><thead><tr><th>Output</th><th>Model</th><th>Target</th></tr></thead><tbody>
+   <tr><td>Average delay</td><td>17.50 min</td><td>17.5 min · CODA</td></tr>
+   <tr><td>Reactionary share</td><td>0.460</td><td>0.46 · CODA</td></tr>
+   <tr><td>Delay multiplier</td><td>1.85×</td><td>1.85 · Beatty</td></tr>
+  </tbody></table>
+  <p class="small">Share and multiplier are algebraically linked, so they count as two independent matches, not three. The model reproduces the level of delay and its split between primary and reactionary delay.</p>
+ </div>
+ <div class="card"><h3>Structural checks</h3>
+  <p class="small">✓ Units consistent (min/day rates → min stock); passes Vensim unit check.</p>
+  <p class="small">✓ Operational delay has exactly four direct causes; no double-counting.</p>
+  <p class="small">✓ No orphan variables or broken links after boarding/check-in removal.</p>
+  <p class="small">✓ Rebooking Rate reduces the Misconnected-Passengers stock.</p>
+  <p class="small">✓ Reactionary delay arises only from propagation, never from operational factors.</p>
+ </div>
+</section>
+<div class="section-title"><h2>Sensitivity analysis</h2><span>±10% parameter runs</span></div>
+<section class="grid2">
+ <div class="card"><h3>What moves average delay most?</h3>
+  <div class="sens">
+   <div class="sensrow"><b>Recovery fraction</b><p>Dominant and sharply asymmetric: a 10% decrease adds 15.7 min; a 10% increase removes 6.8 min.</p></div>
+   <div class="sensrow"><b>Propagation strength</b><p>Second most influential; a 10% increase adds 7.5 min, increasing runaway-loop risk.</p></div>
+   <div class="sensrow"><b>Other primary rate</b><p>Approximately 3.0 min either way; the enlarged exogenous bucket outranks the buffer.</p></div>
+   <div class="sensrow"><b>Four ground factors</b><p>Smaller and near-symmetric effects; baggage is the largest at approximately 0.49 min in the sensitivity test.</p></div>
+  </div>
+ </div>
+ <div class="card"><h3>The binding constraint: recovery capacity</h3>
+  <div class="highlight">Recovery fraction is the strongest lever in the model.</div>
+  <div class="metrics">
+   <div class="metric"><span>Elasticity</span><b>−5.71</b><p class="small">Highest in the model</p></div>
+   <div class="metric"><span>Stability cliff</span><b>≈ 0.52</b><p class="small">Below this, delay runs to 50–60 min</p></div>
+   <div class="metric"><span>+20% recovery</span><b>10.8 min</b><p class="small">Delay falls from 17.5 min</p></div>
+  </div>
+  <div class="note">A 20% lift in recovery fraction (0.60 → 0.72) reduces average delay from 17.5 to 10.8 minutes in the model.</div>
+ </div>
+</section>
+<div class="section-title"><h2>Management implications</h2><span>Recommendations from the model</span></div>
+<section class="grid2">
+ <div class="card"><h3>1 · Prioritise recovery capacity</h3><div class="highlight">Fix the binding constraint first.</div><p class="small">A 20% lift in recovery cuts delay from 17.5 to 10.8 minutes and is estimated in the model to save €60M/year. The suggested focus is turnaround crews, spare aircraft and gate slack.</p></div>
+ <div class="card"><h3>2 · Improve ground processes selectively</h3><p class="small">The four ground factors matter, but are secondary. Each factor moves delay by less than 0.25% per 1%; baggage is the largest. The model estimates a 25% programme at approximately €24M in value.</p></div>
+ <div class="card"><h3>3 · Set buffers deliberately</h3><p class="small">The buffer cost curve indicates a cost-optimal point near 19.7 minutes, with approximately €23M saving. However, the curve omits throughput loss from longer turnarounds, so the true optimum would be lower.</p></div>
+ <div class="card"><h3>4 · Sequence investment</h3><p class="small">Combined recovery and buffer changes give the lowest delay (9.3 min, 80% OTP), but cost more than recovery alone. The recommended sequence is recovery first, then buffer only if a tighter delay target requires it.</p></div>
+</section>
+<div class="section-title"><h2>Limitations &amp; further work</h2><span>Interpreting the model honestly</span></div>
+<section class="card">
+ <ul class="small" style="padding-left:18px;line-height:1.8;margin:0">
+  <li>This is a calibrated base-case scenario, not an optimised solution; no formal cost-minimisation was run.</li>
+  <li>The buffer cost curve omits schedule throughput lost to longer turnarounds.</li>
+  <li>Misconnection and rebooking remain at zero at 17.5 minutes because delay is below the 30-minute connection buffer; they activate only under disruption.</li>
+  <li>Sub-factor weights are proportional estimates; drop-one-out contributions overlap through the feedback loop and are marginal, not additive.</li>
+  <li>Recovery and propagation parameters are calibrated to CODA aggregates, not independently measured. Propagation strength is the least-sourced influential parameter.</li>
+  <li>The model represents one aggregated airport / aircraft class, without network spill-over or weather stochasticity in the base case.</li>
+ </ul>
+ <div class="note"><b>What would strengthen the analysis:</b> independently measure recovery and propagation from airport operations logs; add throughput opportunity cost; stress-test passenger outcomes under a disruption day; split the exogenous bucket into weather, ATC and security; and run formal cumulative-cost optimisation before claiming an optimum.</div>
+</section>
+<footer class="footer"><span>ANALYTICAL SYSTEM DESIGN · SYSTEM DYNAMICS</span><span>CALIBRATED MODEL · VENSIM · 2026</span></footer>
+</main></body></html>

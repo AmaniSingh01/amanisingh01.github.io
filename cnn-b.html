@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#071321">
+<title>Beyond the Bottle | Amani Singh</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
+:root{--bg:#071321;--panel:rgba(9,24,40,.84);--line:rgba(164,193,212,.2);--text:#f0eee8;--muted:#a6b5c2;--blue:#a4c1d4;--red:#ef4444;--gold:#d8b77a;--sans:'DM Sans',Arial,sans-serif;--mono:'DM Mono',monospace;--serif:'Playfair Display',Georgia,serif}
+*{box-sizing:border-box}body{margin:0;color:var(--text);font-family:var(--sans);background:#071321 url("assets/wallpaper.jpg") center/cover fixed no-repeat;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;background:rgba(4,12,22,.68);pointer-events:none;z-index:-1}
+.wrap{max-width:1320px;margin:auto;padding:24px clamp(18px,4vw,56px) 64px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:8px 0 20px;border-bottom:1px solid var(--line);font:10px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
+.back{text-decoration:none;border-bottom:1px solid var(--blue);padding-bottom:4px}
+.hero{display:grid;grid-template-columns:1fr;gap:24px;padding:42px 0 28px}
+.kicker{font:10px var(--mono);letter-spacing:.16em;color:var(--blue);text-transform:uppercase}
+h1{font-size:clamp(38px,5vw,64px);line-height:1.03;letter-spacing:-.05em;font-weight:500;margin:15px 0}
+h1 em{font:italic 500 1em var(--serif);color:#e7b1a8}
+.subtitle{max-width:900px;color:#d1dce4;font-size:16px;line-height:1.65;margin:0}
+.meta{display:flex;gap:20px;flex-wrap:wrap;margin-top:20px;color:var(--muted);font:9px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.ads{width:100%;display:block;max-height:560px;object-fit:cover;object-position:25% center;background:rgba(0,0,0,.36);border:1px solid var(--line);border-radius:8px;margin-top:12px}
+.section-title{display:flex;justify-content:space-between;align-items:end;margin:28px 0 14px;border-bottom:1px solid var(--line);padding-bottom:10px}
+.section-title h2{font:20px var(--serif);margin:0}.section-title span{font:9px var(--mono);color:var(--blue);letter-spacing:.12em;text-transform:uppercase}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px;backdrop-filter:blur(10px);box-shadow:0 10px 28px #0002}
+.kpi-label{font:9px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.kpi-value{font-size:clamp(27px,3vw,38px);font-weight:600;letter-spacing:-.04em;margin:10px 0 3px}
+.kpi-note,.small{font-size:11px;color:var(--muted);line-height:1.55}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.card h3{font-size:14px;font-weight:600;margin:0 0 8px}
+.bars{display:grid;gap:17px;margin-top:20px}
+.barrow{display:grid;grid-template-columns:150px 1fr 64px;gap:12px;align-items:center;font-size:11px}
+.track{height:10px;background:#1c3042;border-radius:20px;overflow:hidden}.fill{height:100%;border-radius:20px;background:linear-gradient(90deg,#b65a53,#f2a08c)}
+.pval{font:9px var(--mono);color:var(--blue);text-align:right}
+.split{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:15px}
+.mini{padding:14px;border:1px solid var(--line);border-radius:6px;background:rgba(4,16,29,.5)}
+.mini b{display:block;font-size:25px;margin:5px 0}.mini span{font:9px var(--mono);letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.four{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+.adbox{border:1px solid var(--line);background:rgba(8,22,36,.78);padding:12px;border-radius:6px}
+.adbox b{font:10px var(--mono);color:var(--blue)}.adbox p{font-size:12px;margin:7px 0 0}
+.callout{font:clamp(20px,2.5vw,29px)/1.25 var(--serif);margin:10px 0 12px}
+.insight{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;margin-top:14px}
+.tagrow{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}.tag{font:9px var(--mono);padding:7px 9px;border:1px solid var(--line);border-radius:20px;color:var(--blue)}
+.note{border-left:2px solid var(--gold);padding:12px 14px;background:rgba(216,183,122,.08);font-size:11px;line-height:1.6;color:#e4ded0;margin-top:14px}
+.table{width:100%;border-collapse:collapse;font-size:11px;margin-top:12px}.table th,.table td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line)}.table th{font:9px var(--mono);letter-spacing:.08em;color:var(--blue);text-transform:uppercase}.yes{color:#8ed3b0}.no{color:#d9a28e}
+.footer{margin-top:28px;padding-top:15px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--muted);font:9px var(--mono);letter-spacing:.08em}
+@media(max-width:850px){.kpis{grid-template-columns:repeat(2,1fr)}.grid2,.insight{grid-template-columns:1fr}.four{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.barrow{grid-template-columns:112px 1fr 50px}.split{grid-template-columns:1fr 1fr}.four{grid-template-columns:1fr 1fr}}
+</style></head>
+<body><main class="wrap">
+<header class="top"><span>AS / Portfolio · 2026</span><a class="back" href="index.html">← Back to projects</a></header>
+<section class="hero">
+ <div><div class="kicker">Consumer Neuroscience &amp; Neuromarketing · CNN-B</div>
+ <h1>Does emotional storytelling <em>shift attention</em> away from the product?</h1>
+ <p class="subtitle">A 2 × 2 experimental study testing whether metaphor-led advertising changes what people look at and how they respond — and whether the effect differs between a familiar brand and an unfamiliar one.</p>
+ <div class="meta"><span>Metaphor vs. literal advertising</span><span>Coca-Cola vs. Rivo Cola</span><span>Survey + remote eye tracking</span></div></div>
+ <img class="ads" src="assets/project-strip.jpg" alt="The four experimental advertisements: Coca-Cola and Rivo Cola, each shown in metaphor and literal formats">
+</section>
+<div class="section-title"><h2>Study at a glance</h2><span>Experimental design</span></div>
+<section class="kpis">
+ <div class="card"><div class="kpi-label">Survey responses</div><div class="kpi-value">50</div><div class="kpi-note">30 valid responses used in statistical tests</div></div>
+ <div class="card"><div class="kpi-label">Eye-tracking recordings</div><div class="kpi-value">47</div><div class="kpi-note">Six-second ad exposure</div></div>
+ <div class="card"><div class="kpi-label">Experimental conditions</div><div class="kpi-value">2 × 2</div><div class="kpi-note">Ad type × brand fame</div></div>
+ <div class="card"><div class="kpi-label">Survey scale</div><div class="kpi-value">1–7</div><div class="kpi-note">23 post-exposure questions</div></div>
+</section>
+<section class="grid2">
+ <div class="card"><h3>What changed with metaphor ads?</h3><p class="small">Mean scores on 7-point scales. Metaphor versus literal ad; 30 valid responses (18 metaphor, 12 literal).</p>
+ <div class="bars">
+  <div class="barrow"><span>Purchase intent</span><div class="track"><div class="fill" style="width:78.6%"></div></div><span class="pval">5.5 vs 4.6</span></div>
+  <div class="barrow"><span>Togetherness</span><div class="track"><div class="fill" style="width:74.3%"></div></div><span class="pval">5.2 vs 3.4</span></div>
+  <div class="barrow"><span>Brand attitude</span><div class="track"><div class="fill" style="width:71.4%"></div></div><span class="pval">5.0 vs 4.7</span></div>
+  <div class="barrow"><span>Curiosity</span><div class="track"><div class="fill" style="width:67.1%"></div></div><span class="pval">4.7 vs 4.4</span></div>
+ </div>
+ <p class="small" style="margin-top:16px">Bars visualise the metaphor mean as a proportion of the 7-point scale; paired values show metaphor vs. literal means.</p>
+ </div>
+ <div class="card"><h3>Statistical evidence</h3><p class="small">Welch t-tests comparing metaphor and literal formats.</p>
+ <table class="table"><thead><tr><th>Measure</th><th>p-value</th><th>Result</th></tr></thead><tbody>
+ <tr><td>Togetherness</td><td>.003</td><td class="yes">Significant</td></tr>
+ <tr><td>Brand meaning</td><td>.032</td><td class="yes">Significant</td></tr>
+ <tr><td>Purchase intent</td><td>.037</td><td class="yes">Significant</td></tr>
+ <tr><td>Happiness</td><td>.052</td><td class="no">Not significant</td></tr>
+ <tr><td>Attitude toward ad</td><td>.246</td><td class="no">Not significant</td></tr>
+ <tr><td>Curiosity</td><td>.278</td><td class="no">Not significant</td></tr>
+ <tr><td>Brand attitude</td><td>.578</td><td class="no">Not significant</td></tr>
+ </tbody></table>
+ </div>
+</section>
+<div class="section-title"><h2>The experimental setup</h2><span>Four ad conditions</span></div>
+<section class="four">
+ <div class="adbox"><b>01 / COCA-COLA</b><p><strong>Metaphor</strong><br>Friends at sunset · “Open Happiness”</p></div>
+ <div class="adbox"><b>02 / COCA-COLA</b><p><strong>Literal</strong><br>Product close-up · “Ice-cold. Refreshing taste.”</p></div>
+ <div class="adbox"><b>03 / RIVO COLA</b><p><strong>Metaphor</strong><br>Friends at sunset · “Open Happiness”</p></div>
+ <div class="adbox"><b>04 / RIVO COLA</b><p><strong>Literal</strong><br>Product close-up · “Ice-cold. Refreshing taste.”</p></div>
+</section>
+<section class="insight">
+ <div class="card"><div class="kicker">Attention pattern · descriptive eye-tracking</div><div class="callout">Literal ads drew attention to the bottle. Metaphor ads drew attention to the people and the scene.</div>
+ <div class="split">
+  <div class="mini"><span>Literal ads</span><b>40–50%</b><p class="small">Viewing time on bottle and label</p></div>
+  <div class="mini"><span>Metaphor ads</span><b>43–44%</b><p class="small">Viewing time on the woman</p></div>
+ </div>
+ <p class="small" style="margin-top:12px">These eye-tracking observations are descriptive; the report does not claim statistical significance for gaze differences. The logo received very little fixation across the four ads.</p>
+ </div>
+ <div class="card"><h3>Did brand fame change the effect?</h3><div class="split">
+  <div class="mini"><span>Brand familiarity</span><b>6.0 / 7</b><p class="small">Coca-Cola</p></div>
+  <div class="mini"><span>Brand familiarity</span><b>2.5 / 7</b><p class="small">Rivo Cola</p></div>
+ </div>
+ <p class="small" style="margin-top:14px">The familiarity manipulation worked. However, the 2 × 2 ANOVA found no significant ad-type × brand-fame interaction for purchase intent (p = .719). The metaphor advantage did not detectably differ between the two brands.</p>
+ </div>
+</section>
+<div class="section-title"><h2>What the analysis suggests</h2><span>Interpretation</span></div>
+<section class="grid2">
+ <div class="card"><h3>Curiosity did not explain the effect</h3><p class="small">A bootstrap mediation test with 5,000 resamples found no evidence that curiosity mediated the effect of ad type on purchase intent or brand attitude. The indirect-effect confidence intervals included zero.</p>
+ <div class="note">The curiosity scale had low internal consistency (alpha = .38), and the sample was small. The mediation result should therefore be interpreted cautiously.</div></div>
+ <div class="card"><h3>The central takeaway</h3><div class="callout">A metaphor ad may sell the moment without necessarily selling the brand name.</div><p class="small">Emotional storytelling increased togetherness and stated purchase intent in this sample. It did not produce a statistically significant change in brand attitude or curiosity.</p></div>
+</section>
+<div class="section-title"><h2>Limitations &amp; next steps</h2><span>Research quality</span></div>
+<section class="card"><ul class="small" style="padding-left:18px;line-height:1.8;margin:0">
+ <li>Small valid sample (n = 30), with unequal groups and a smallest condition group of five.</li>
+ <li>The purchase-intent result (p = .037) is fragile because several tests were run without correction.</li>
+ <li>Rivo Cola resembled Coca-Cola; 7 of 25 respondents exposed to Rivo mentioned Coca-Cola or a copy.</li>
+ <li>26 of 50 eye-tracking recordings were flagged for weaker calibration; gaze findings are descriptive.</li>
+ <li>Each respondent saw one ad for six seconds, and outcomes were self-reported rather than observed purchases.</li>
+ <li>Further work: larger sample, more distinct unfamiliar brand, stronger calibration, more reliable curiosity scale and a real choice measure.</li>
+</ul></section>
+<footer class="footer"><span>CONSUMER NEUROSCIENCE &amp; NEUROMARKETING</span><span>2 × 2 BETWEEN-SUBJECTS EXPERIMENT · 2026</span></footer>
+</main></body></html>
