@@ -4,98 +4,67 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#071321">
-<title>Questions that become projects — Amani Singh</title>
+<title>Exploring Business Problems — Amani Singh</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
 :root{--ink:#eeeae2;--blue:#a4c1d4;--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',Arial,sans-serif;--mono:'DM Mono',monospace}
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%;background:#071321}
-body{min-height:100vh;color:var(--ink);font-family:var(--sans);background-image:url('assets/wallpaper.jpg');background-position:center;background-size:cover;background-repeat:no-repeat;background-attachment:fixed}
+body{min-height:100vh;color:var(--ink);font-family:var(--sans);background-image:linear-gradient(rgba(3,11,21,.24),rgba(3,11,21,.24)),url('assets/wallpaper.jpg');background-position:center;background-size:cover;background-repeat:no-repeat;background-attachment:fixed}
 .page{width:100%;max-width:1600px;margin:0 auto;padding:0 clamp(22px,4.5vw,76px);position:relative}
-h1{width:100%;margin:42px auto 42px;text-align:center;white-space:nowrap;font-size:clamp(30px,5.05vw,76px);line-height:1.05;letter-spacing:-.06em;font-weight:500}
-h1 em{font:italic 500 1em var(--serif);color:var(--blue);white-space:nowrap}
-.polaroid-field{margin:0 auto;padding:0 0 38px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:start;justify-items:center;column-gap:clamp(12px,2vw,30px);row-gap:24px}
-.polaroid{display:block;text-decoration:none;position:relative;width:min(100%,194px);margin:0;padding:10px 10px 0;background:#f2efe6;color:#263541;box-shadow:0 10px 26px rgba(0,0,0,.28);cursor:pointer;transition:transform .3s,box-shadow .3s}
+.identity{text-align:center;padding-top:42px;color:var(--blue)}
+.name{font:11px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:#e9edf0}
+.credentials{margin-top:10px;font:10px/1.8 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:#c0ccd5}
+.credentials .focus{display:block;color:var(--blue)}
+h1{width:100%;margin:24px auto 42px;text-align:center;font-size:clamp(30px,5.05vw,76px);line-height:1.05;letter-spacing:-.06em;font-weight:500}
+h1 em{font:italic 500 1em var(--serif);color:var(--blue)}
+.polaroid-field{margin:0 auto;padding:0 0 48px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:start;justify-items:center;column-gap:clamp(12px,2vw,30px);row-gap:28px}
+.polaroid{display:block;text-decoration:none;position:relative;width:min(100%,208px);margin:0;padding:10px 10px 0;background:#f2efe6;color:#263541;box-shadow:0 10px 26px rgba(0,0,0,.32);transition:transform .3s,box-shadow .3s;transform:rotate(var(--tilt,0deg))}
 .polaroid:nth-child(1){--tilt:-4deg;margin-top:12px}
 .polaroid:nth-child(2){--tilt:3deg;margin-top:76px}
 .polaroid:nth-child(3){--tilt:-2deg;margin-top:5px}
 .polaroid:nth-child(4){--tilt:4deg;margin-top:88px}
 .polaroid:nth-child(5){--tilt:-3deg;margin-top:28px}
-.polaroid summary{display:block;list-style:none;cursor:pointer}
-.polaroid summary::-webkit-details-marker{display:none}
-.polaroid{transform:rotate(var(--tilt,0deg))}
-.polaroid:hover{transform:rotate(0deg) translateY(-5px);box-shadow:0 17px 30px rgba(0,0,0,.34)}
-.polaroid[open]{transform:rotate(0deg)}
-.polaroid:before{content:"";position:absolute;z-index:2;top:-8px;left:calc(50% - 25px);width:50px;height:16px;background:rgba(223,216,196,.68);transform:rotate(-4deg);box-shadow:0 1px 2px rgba(0,0,0,.12);pointer-events:none}
+.polaroid:before{content:"";position:absolute;z-index:2;top:-8px;left:calc(50% - 25px);width:50px;height:16px;background:rgba(223,216,196,.72);transform:rotate(-4deg);box-shadow:0 1px 2px rgba(0,0,0,.12);pointer-events:none}
 .polaroid:nth-child(even):before{transform:rotate(5deg)}
-.photo{display:block;width:100%;height:clamp(105px,13vw,160px);background-image:url('assets/project-strip.jpg');background-repeat:no-repeat;background-size:500% 100%;background-color:#293744}
-.photo-film{background-position:0% 50%}
-.photo-bottle{background-position:25% 50%}
-.photo-flight{background-position:50% 50%}
-.photo-closet{background-position:75% 50%}
-.photo-pulse{background-position:100% 50%}
-.caption{min-height:76px;display:flex;align-items:center;padding:12px 4px 15px;font:clamp(10px,.9vw,12px)/1.4 var(--serif);color:#263541}
-.reveal{padding:10px 2px 13px;border-top:1px solid #d1d0c8;font:10px/1.5 var(--sans);color:#53616a}
-.reveal b{font:7px var(--mono);letter-spacing:.08em;color:#46677c}
-.reveal p{margin:6px 0}
-.reveal small{font:6px var(--mono);letter-spacing:.08em;color:#74838a}
-@media(max-width:1050px){
- .page{padding:0 28px}
- h1{font-size:clamp(30px,5.1vw,54px);margin:36px auto 34px}
- .polaroid-field{grid-template-columns:repeat(3,minmax(0,1fr));column-gap:24px;row-gap:28px;max-width:760px}
- .polaroid:nth-child(n){margin-top:0}
- .polaroid:nth-child(2),.polaroid:nth-child(5){margin-top:42px}
- .polaroid{width:min(100%,190px)}
-}
-@media(max-width:620px){
- .page{padding:0 18px}
- h1{font-size:clamp(25px,5.6vw,36px);margin:32px auto 30px;letter-spacing:-.055em;white-space:normal}
- .polaroid-field{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 14px;padding-bottom:30px}
- .polaroid{width:min(100%,175px)}
- .polaroid:nth-child(n){margin-top:0}
- .polaroid:nth-child(even){margin-top:34px}
- .photo{height:clamp(100px,29vw,145px)}
- .caption{min-height:68px;font-size:10px}
-}
-@media(max-width:360px){
- h1{font-size:23px}
- .polaroid-field{column-gap:8px}
- .polaroid{padding:7px 7px 0}
- .caption{font-size:9px}
-}
+.polaroid:hover,.polaroid:focus-visible{transform:rotate(0deg) translateY(-6px);box-shadow:0 18px 34px rgba(0,0,0,.42);outline:none}
+.photo{display:block;width:100%;height:clamp(112px,13vw,166px);object-fit:cover;background:#293744}
+.caption{min-height:92px;display:flex;align-items:center;padding:13px 5px 17px;font:clamp(10px,.9vw,12px)/1.45 var(--serif);color:#263541}
+.polaroid:focus-visible{outline:3px solid #a4c1d4;outline-offset:5px}
+@media(max-width:1050px){.page{padding:0 28px}.identity{padding-top:36px}h1{font-size:clamp(30px,5.1vw,54px);margin:24px auto 34px}.polaroid-field{grid-template-columns:repeat(3,minmax(0,1fr));column-gap:24px;row-gap:30px;max-width:800px}.polaroid:nth-child(n){margin-top:0}.polaroid:nth-child(2),.polaroid:nth-child(5){margin-top:42px}.polaroid{width:min(100%,210px)}}
+@media(max-width:620px){.page{padding:0 18px}.identity{padding-top:30px}.credentials{font-size:9px;letter-spacing:.07em}h1{font-size:clamp(25px,5.6vw,36px);margin:22px auto 30px;letter-spacing:-.055em}.polaroid-field{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 14px;padding-bottom:30px}.polaroid{width:min(100%,185px)}.polaroid:nth-child(n){margin-top:0}.polaroid:nth-child(even){margin-top:34px}.photo{height:clamp(100px,29vw,145px)}.caption{min-height:82px;font-size:10px}}
+@media(max-width:360px){h1{font-size:23px}.polaroid-field{column-gap:8px}.polaroid{padding:7px 7px 0}.caption{font-size:9px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
-
-/* Self-contained embedded artwork: no external image files required */
-body {
-  background-color:#071321 !important;
-  background-image:url("assets/wallpaper.jpg") !important;
-  background-position:center center !important;
-  background-size:cover !important;
-  background-repeat:no-repeat !important;
-  background-attachment:fixed !important;
-}
-.photo {
-  background-repeat:no-repeat !important;
-  background-position:center center !important;
-  background-size:cover !important;
-}
-.photo-film {background-image:url("assets/project-strip.jpg") !important;}
-.photo-bottle {background-image:url("assets/project-strip.jpg") !important;}
-.photo-flight {background-image:url("assets/project-strip.jpg") !important;}
-.photo-closet {background-image:url("assets/project-strip.jpg") !important;}
-.photo-pulse {background-image:url("assets/project-strip.jpg") !important;}
-
 </style>
 </head>
 <body>
 <main class="page">
-  <h1>Questions that become <em>projects.</em></h1>
-  <section class="polaroid-field" aria-label="Project questions">
-    <a class="polaroid" href="dmpa.html" aria-label="Open the Indian film box-office performance project dashboard"><span class="photo photo-film"></span><span class="caption">Can box-office performance be predicted using pre-release indicators?</span></a>
-    <a class="polaroid" href="cnn-b.html" aria-label="Open the emotional storytelling and advertising attention project dashboard"><span class="photo photo-bottle"></span><span class="caption">Does emotional storytelling shift attention away from the product?</span></a>
-    <a class="polaroid" href="asd.html" aria-label="Open the flight delay propagation project dashboard"><span class="photo photo-flight"></span><span class="caption">How do operational constraints influence flight delay propagation?</span></a>
-    <a class="polaroid" href="closetloop.html" aria-label="Open the ClosetLoop digital marketing strategy project dashboard"><span class="photo photo-closet"></span><span class="caption">How can digital marketing build demand and drive bookings for a wedding-wear rental brand?</span></a>
-    <a class="polaroid" href="crossing-hurdles.html" aria-label="Open the recruitment operations and workflow transformation case study"><span class="photo photo-pulse"></span><span class="caption">How can fragmented recruitment workflows become a scalable operating system?</span></a>
+  <header class="identity" aria-label="Portfolio owner and academic focus">
+    <div class="name">Amani Singh</div>
+    <div class="credentials">MBA · Indian Institute of Management Amritsar<span class="focus">Focus Areas · Marketing Analytics &amp; Machine Learning</span></div>
+  </header>
+  <h1>Exploring Business <em>Problems</em></h1>
+  <section class="polaroid-field" aria-label="Selected business projects">
+    <a class="polaroid" href="crossing-hurdles.html" aria-label="Open Recruitment Operations and HR Workflow Standardisation">
+      <img class="photo" src="assets/crossing-hurdles.jpg" alt="Recruitment and HR workflow represented through organised wooden blocks">
+      <span class="caption">Recruitment Operations &amp; HR Workflow Standardisation</span>
+    </a>
+    <a class="polaroid" href="closetloop.html" aria-label="Open the 12-Month Digital Marketing and Growth Strategy for a Startup">
+      <img class="photo" src="assets/closetloop.jpg" alt="ClosetLoop occasion-wear rental campaign">
+      <span class="caption">12-Month Digital Marketing &amp; Growth Strategy for a Startup</span>
+    </a>
+    <a class="polaroid" href="dmpa.html" aria-label="Open Data Mining and Predictive Modelling of Indian Film Performance">
+      <img class="photo" src="assets/dmpa.jpg" alt="Black-and-white image of a film camera and filmmakers">
+      <span class="caption">Data Mining &amp; Predictive Modelling of Indian Film Performance</span>
+    </a>
+    <a class="polaroid" href="asd.html" aria-label="Open System Dynamics Modelling of Flight Delay Propagation">
+      <img class="photo" src="assets/asd.jpg" alt="Flight Delayed project image">
+      <span class="caption">System Dynamics Modelling of Flight Delay Propagation</span>
+    </a>
+    <a class="polaroid" href="cnn-b.html" aria-label="Open Consumer Research and Statistical Analysis: Beyond the Bottle">
+      <img class="photo" src="assets/cnn-b.jpg" alt="Rivo Cola sunset rooftop campaign">
+      <span class="caption">Consumer Research &amp; Statistical Analysis: Beyond the Bottle</span>
+    </a>
   </section>
 </main>
 </body>
