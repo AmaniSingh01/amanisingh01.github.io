@@ -222,3 +222,18 @@ body::after{
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 440' fill='none'%3E%3Cg stroke='%2399b9cb' stroke-opacity='.5' stroke-width='1'%3E%3Cpath d='M35 30V390H870'/%3E%3Cpath d='M35 100H870M35 170H870M35 240H870M35 310H870' stroke-dasharray='3 8'/%3E%3Cpath d='M35 350C110 330 135 270 205 286S320 240 380 255 480 170 550 194 650 105 710 132 800 55 870 70' stroke='%23a4c1d4' stroke-width='3'/%3E%3C/g%3E%3Cg fill='%23a4c1d4'%3E%3Ccircle cx='205' cy='286' r='4'/%3E%3Ccircle cx='380' cy='255' r='4'/%3E%3Ccircle cx='550' cy='194' r='4'/%3E%3Ccircle cx='710' cy='132' r='4'/%3E%3Ccircle cx='870' cy='70' r='4'/%3E%3C/g%3E%3C/svg%3E");
 }
 .page{position:relative;z-index:1}
+
+
+/* Use the supplied analytical wallpaper image as the actual page background. */
+body{
+  background-color:#071321;
+  background-image:url('/assets/wallpaper.jpg');
+  background-position:center center;
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-attachment:fixed;
+}
+body::before,
+body::after{
+  display:none!important;
+}
