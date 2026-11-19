@@ -146,3 +146,44 @@ body{margin:0;min-height:100vh}
  .polaroid{padding:7px 7px 0}
  .caption{font-size:9px}
 }
+/* Wide, balanced composition: one-line title and five separate cards */
+body{margin:0;min-height:100vh}
+.page{width:100%;max-width:1600px;margin:0 auto;padding:0 clamp(22px,4.5vw,76px)}
+.page>h1{width:100%;margin:42px auto 42px;text-align:center;white-space:nowrap;font-size:clamp(30px,5.05vw,76px);line-height:1.05;letter-spacing:-.06em;font-weight:500}
+.page>h1 em{white-space:nowrap}
+.polaroid-field{height:auto;min-height:0;margin:0 auto;padding:0 0 38px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:start;justify-items:center;column-gap:clamp(12px,2vw,30px);row-gap:24px;position:relative}
+.polaroid{position:relative;left:auto!important;top:auto!important;width:min(100%,194px);min-width:0;margin:0;padding:10px 10px 0;transform:rotate(var(--tilt,0deg));align-self:start}
+.polaroid:nth-child(1){--tilt:-4deg;margin-top:12px}
+.polaroid:nth-child(2){--tilt:3deg;margin-top:76px}
+.polaroid:nth-child(3){--tilt:-2deg;margin-top:5px}
+.polaroid:nth-child(4){--tilt:4deg;margin-top:88px}
+.polaroid:nth-child(5){--tilt:-3deg;margin-top:28px}
+.photo{height:clamp(105px,13vw,160px)!important;width:100%;display:block}
+.caption{min-height:76px;padding:12px 4px 15px;font-size:clamp(10px,.9vw,12px);line-height:1.4}
+.polaroid:hover{transform:rotate(0deg) translateY(-5px)!important}
+.polaroid[open]{transform:rotate(0deg)!important}
+.polaroid:before{pointer-events:none}
+@media(max-width:1050px){
+ .page{padding:0 28px}
+ .page>h1{font-size:clamp(30px,5.1vw,54px);margin:36px auto 34px}
+ .polaroid-field{grid-template-columns:repeat(3,minmax(0,1fr));column-gap:24px;row-gap:28px;max-width:760px}
+ .polaroid:nth-child(n){margin-top:0}
+ .polaroid:nth-child(2),.polaroid:nth-child(5){margin-top:42px}
+ .polaroid{width:min(100%,190px)}
+}
+@media(max-width:620px){
+ .page{padding:0 18px}
+ .page>h1{font-size:clamp(25px,5.6vw,36px);margin:32px auto 30px;letter-spacing:-.055em}
+ .polaroid-field{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 14px;padding-bottom:30px}
+ .polaroid{width:min(100%,175px)}
+ .polaroid:nth-child(n){margin-top:0}
+ .polaroid:nth-child(even){margin-top:34px}
+ .photo{height:clamp(100px,29vw,145px)!important}
+ .caption{min-height:68px;font-size:10px}
+}
+@media(max-width:360px){
+ .page>h1{font-size:23px}
+ .polaroid-field{column-gap:8px}
+ .polaroid{padding:7px 7px 0}
+ .caption{font-size:9px}
+}
